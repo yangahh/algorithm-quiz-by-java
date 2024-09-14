@@ -3,20 +3,18 @@ from collections import deque
 
 input = sys.stdin.readline
 n, m, k, x = map(int, input().split())
-gragh = [[] for _ in range(n + 1)]
+graph = [[] for _ in range(n + 1)]
 for _ in range(m):
     a, b = map(int, input().split())
-    gragh[a].append(b)
+    graph[a].append(b)
 
 visited = [0] * (n + 1)
 q = deque([x])
-result = []
-result.sort()
 distance = [0] * (n + 1)  # 출발점 x에서 각 도시로의 최단 거리
 
 while q:
     node = q.popleft()
-    for next_node in gragh[node]:
+    for next_node in graph[node]:
         if not visited[next_node]:
             visited[next_node] = 1
             distance[next_node] = distance[node] + 1  # 최단 거리 갱신
