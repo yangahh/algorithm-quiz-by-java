@@ -14,7 +14,7 @@ public class Solution {
 
     public static void main(String[] args) throws IOException {
         setInputData();
-        boolean[] visited = new boolean[n+1];  // 초기값은 false 
+        boolean[] visited = new boolean[n + 1]; // 초기값은 false
         int[] distance = new int[n+1];
         Queue<Integer> q = new LinkedList<>();  // LinkedList는 Deque 와 List 인터페이스를 모두 구현한다.
         q.offer(x);
@@ -55,7 +55,7 @@ public class Solution {
             graph[node].add(adjacentNode);
         }
 
-        br.close(); 
+        br.close();
     }
 
     public static void printResult(int[] distance) {

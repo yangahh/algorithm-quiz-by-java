@@ -3,24 +3,22 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class Solution {
     static int n;
     static int m;
-    static List<Integer> cards;
-    static List<Integer> targetNums;
+    // static List<Integer> cards;
+    // static List<Integer> targetNums;
+    static String[] cards;
+    static String[] targetNums;
 
     public static void main(String[] args) throws IOException {
         setInputData();
 
-        Map<Integer, Integer> cardsCnt = new HashMap<>();
-        for (int card : cards) {
+        Map<String, Integer> cardsCnt = new HashMap<>();
+        for (String card : cards) {
             if (cardsCnt.containsKey(card)) {
                 int cnt = cardsCnt.get(card);
                 cardsCnt.put(card, cnt + 1);
@@ -29,9 +27,9 @@ public class Solution {
             }
         }
 
-        List<Integer> result = new ArrayList<>();
-        for (int num : targetNums) {
-            result.add(cardsCnt.getOrDefault(num, 0));
+        int[] result = new int[m];
+        for (int i; i < m; i++) {
+            result[i] = cardsCnt.getOrDefault(targetNums[i], 0);
         }
 
         print(result);
@@ -43,24 +41,25 @@ public class Solution {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         n = Integer.parseInt(br.readLine());
-
-        cards = Arrays.stream(br.readLine().split(" "))
-                .map(Integer::parseInt)
-                .collect(Collectors.toCollection(ArrayList::new));
+        cards = br.readLine().split(" ");
+        // cards = Arrays.stream(br.readLine().split(" "))
+        // .map(Integer::parseInt)
+        // .collect(Collectors.toCollection(ArrayList::new));
 
         m = Integer.parseInt(br.readLine());
 
-        targetNums = Arrays.stream(br.readLine().split(" "))
-                .map(Integer::parseInt)
-                .collect(Collectors.toCollection(ArrayList::new));
+        // targetNums = Arrays.stream(br.readLine().split(" "))
+        // .map(Integer::parseInt)
+        // .collect(Collectors.toCollection(ArrayList::new));
+        targetNums = br.readLine().split(" ");
         br.close();
     }
 
-    static void print(List<Integer> result) throws IOException {
+    static void print(int[] result) throws IOException {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        for (int i = 0; i < result.size(); i++) {
-            bw.write(result.get(i) + " ");
+        for (int i = 0; i < m; i++) {
+            bw.write(result[i] + " ");
             // if (i != result.size() - 1) {
             // bw.write(" ");
             // }
