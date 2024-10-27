@@ -28,7 +28,7 @@ public class Solution {
         }
 
         int[] result = new int[m];
-        for (int i; i < m; i++) {
+        for (int i = 0; i < m; i++) {
             result[i] = cardsCnt.getOrDefault(targetNums[i], 0);
         }
 
