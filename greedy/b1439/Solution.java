@@ -28,4 +28,30 @@ public class Solution {
         System.out.println(Math.min(zeroGroupCnt, oneGroupCnt));
     }
 
+    public static void main2(String[] args) throws IOException {
+        String s = br.readLine();
+        br.close();
+        int zeroGroupCnt = 0;
+        int oneGroupCnt = 0;
+        int n = s.length();
+
+        if (s.charAt(0) == '0') {
+            zeroGroupCnt++;
+        } else {
+            oneGroupCnt++;
+        }
+
+        for (int i = 1; i < n; i++) {
+            if (s.charAt(i - 1) != s.charAt(i)) {
+                if (s.charAt(i) == '0') {
+                    zeroGroupCnt++;
+                } else {
+                    oneGroupCnt++;
+                }
+            }
+        }
+
+        System.out.println(Math.min(zeroGroupCnt, oneGroupCnt));
+    }
+
 }

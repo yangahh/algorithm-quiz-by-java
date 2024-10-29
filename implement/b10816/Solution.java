@@ -14,6 +14,9 @@ public class Solution {
     static String[] cards;
     static String[] targetNums;
 
+    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
     public static void main(String[] args) throws IOException {
         setInputData();
 
@@ -38,7 +41,6 @@ public class Solution {
 
     static void setInputData() throws IOException {
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         n = Integer.parseInt(br.readLine());
         cards = br.readLine().split(" ");
@@ -56,7 +58,6 @@ public class Solution {
     }
 
     static void print(int[] result) throws IOException {
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
         for (int i = 0; i < m; i++) {
             bw.write(result[i] + " ");
@@ -64,6 +65,37 @@ public class Solution {
             // bw.write(" ");
             // }
         }
+        bw.flush();
+        bw.close();
+    }
+
+    public static void main2(String[] args) throws IOException {
+        int n = Integer.parseInt(br.readLine());
+        String[] cards = br.readLine().split(" ");
+        int m = Integer.parseInt(br.readLine());
+        String[] nums = br.readLine().split(" ");
+        br.close();
+
+        Map<String, Integer> cardCnt = new HashMap<>();
+        int[] result = new int[m];
+
+        for (String card : cards) {
+            if (cardCnt.containsKey(card)) {
+                int cnt = cardCnt.get(card);
+                cardCnt.put(card, cnt + 1);
+            } else {
+                cardCnt.put(card, 1);
+            }
+        }
+
+        for (int i = 0; i < m; i++) {
+            if (cardCnt.containsKey(nums[i])) {
+                result[i] = cardCnt.get(nums[i]);
+            }
+            bw.write(result[i] + " ");
+        }
+        bw.write("\n");
+
         bw.flush();
         bw.close();
     }
